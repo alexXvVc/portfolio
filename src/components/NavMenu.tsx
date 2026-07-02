@@ -14,6 +14,9 @@ const ITEMS = [
 export default function NavMenu() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [hovered, setHovered] = useState<string | null>(null);
+
+  const focused = hovered ?? pathname;
 
   return (
     <>
@@ -46,26 +49,45 @@ export default function NavMenu() {
             VÁZQUEZ
           </Link>
 
-          <ul className="mt-4 flex flex-col gap-1 lg:mt-16">
+          <ul
+            className="mt-4 flex flex-col gap-4 lg:mt-20 lg:gap-5"
+            onMouseLeave={() => setHovered(null)}
+          >
             {ITEMS.map((item) => {
-              const active = pathname === item.href;
+              const active = item.href === focused;
               return (
-                <li key={item.href}>
+                <li key={item.href} className="relative">
                   <Link
                     href={item.href}
+                    onMouseEnter={() => setHovered(item.href)}
+                    onFocus={() => setHovered(item.href)}
+                    onBlur={() => setHovered(null)}
                     onClick={() => setOpen(false)}
-                    className={`group flex items-center gap-3 py-2 font-display text-4xl leading-none -skew-x-6 transition-colors sm:text-5xl lg:text-3xl ${
-                      active ? "text-lime" : "text-ink hover:text-coral"
-                    }`}
+                    className="relative flex h-10 items-center overflow-visible"
                   >
                     <span
-                      className={`h-2 w-6 shrink-0 bg-coral transition-transform ${
+                      aria-hidden
+                      className={`absolute inset-y-0 -left-6 right-2 -skew-x-12 bg-coral transition-all duration-300 ease-out ${
                         active
-                          ? "scale-x-100"
-                          : "scale-x-0 group-hover:scale-x-100"
+                          ? "translate-x-2 translate-y-1.5 opacity-100"
+                          : "translate-x-0 translate-y-0 opacity-0"
                       }`}
                     />
-                    {item.label}
+                    <span
+                      aria-hidden
+                      className={`absolute inset-y-0 -left-6 right-2 -skew-x-12 bg-lime transition-all duration-300 ease-out ${
+                        active ? "opacity-100" : "opacity-0"
+                      }`}
+                    />
+                    <span
+                      className={`font-display relative origin-left -skew-x-6 whitespace-nowrap transition-all duration-300 ease-out ${
+                        active
+                          ? "translate-x-2 scale-125 text-bg"
+                          : "scale-100 text-ink/35"
+                      } text-3xl sm:text-4xl lg:text-2xl`}
+                    >
+                      {item.label}
+                    </span>
                   </Link>
                 </li>
               );
