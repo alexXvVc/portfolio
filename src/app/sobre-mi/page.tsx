@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageHeading from "@/components/PageHeading";
+import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
   title: "Sobre mí — Alejandro Vázquez Cobo",
@@ -23,27 +24,26 @@ function Section({
   );
 }
 
+const SECTIONS = [
+  { title: "BIO", content: "Pendiente de actualizar." },
+  { title: "EXPERIENCIA", content: "Pendiente de actualizar." },
+  { title: "SKILLS", content: "Pendiente de actualizar." },
+  { title: "EDUCACIÓN", content: "Pendiente de actualizar." },
+];
+
 export default function SobreMi() {
   return (
     <div className="px-6 py-16 sm:px-12 lg:px-16">
       <PageHeading eyebrow="SOBRE MÍ" title="CURRÍCULUM" />
 
       <div className="divide-y divide-white/10">
-        <Section title="BIO">
-          <p>Pendiente de actualizar.</p>
-        </Section>
-
-        <Section title="EXPERIENCIA">
-          <p>Pendiente de actualizar.</p>
-        </Section>
-
-        <Section title="SKILLS">
-          <p>Pendiente de actualizar.</p>
-        </Section>
-
-        <Section title="EDUCACIÓN">
-          <p>Pendiente de actualizar.</p>
-        </Section>
+        {SECTIONS.map((section, index) => (
+          <Reveal key={section.title} delayMs={index * 80}>
+            <Section title={section.title}>
+              <p>{section.content}</p>
+            </Section>
+          </Reveal>
+        ))}
       </div>
     </div>
   );

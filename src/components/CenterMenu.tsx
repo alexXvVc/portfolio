@@ -20,7 +20,7 @@ export default function CenterMenu() {
     <header className="flex min-h-dvh flex-col px-6 py-10">
       <Link
         href="/"
-        className="self-center font-display text-lg tracking-[0.4em] text-lime sm:text-xl"
+        className="menu-item-in self-center font-display text-lg tracking-[0.4em] text-lime sm:text-xl"
       >
         ALEJANDRO VÁZQUEZ COBO
       </Link>
@@ -30,11 +30,15 @@ export default function CenterMenu() {
           className="flex flex-col items-center gap-8 sm:gap-10"
           onMouseLeave={() => setHovered(null)}
         >
-          {items.map((item) => {
+          {items.map((item, index) => {
             const active = item.href === hovered;
             const dimmed = hovered !== null && !active;
             return (
-              <li key={item.href} className="relative">
+              <li
+                key={item.href}
+                className="menu-item-in relative"
+                style={{ animationDelay: `${120 + index * 90}ms` }}
+              >
                 <Link
                   href={item.href}
                   onMouseEnter={() => setHovered(item.href)}

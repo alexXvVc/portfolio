@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ViewTransition } from "react";
 import { Anton, Space_Grotesk } from "next/font/google";
 import BackgroundFX from "@/components/BackgroundFX";
 import CenterMenu from "@/components/CenterMenu";
@@ -34,7 +35,11 @@ export default function RootLayout({
         <BackgroundFX />
         <div className="relative z-10">
           <CenterMenu />
-          <main>{children}</main>
+          <main>
+            <ViewTransition enter="page-in" exit="page-out" default="none">
+              {children}
+            </ViewTransition>
+          </main>
         </div>
       </body>
     </html>
