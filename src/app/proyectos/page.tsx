@@ -1,28 +1,35 @@
 import type { Metadata } from "next";
+import PageHeading from "@/components/PageHeading";
+import ProjectCard, { type Project } from "@/components/ProjectCard";
 
 export const metadata: Metadata = {
   title: "Proyectos — Alejandro Vázquez Cobo",
 };
 
+const projects: Project[] = [];
+
 export default function Proyectos() {
   return (
     <div className="px-6 py-16 sm:px-12 lg:px-16">
-      <p className="font-display text-lg tracking-[0.3em] text-coral">
-        GALERÍA
-      </p>
-      <h1 className="mt-4 font-display text-5xl -skew-x-3 sm:text-7xl">
-        PROYECTOS
-      </h1>
+      <PageHeading eyebrow="GALERÍA" title="PROYECTOS" />
 
-      <div className="mt-16 border-2 border-dashed border-white/15 px-8 py-20 text-center">
-        <p className="font-display text-2xl text-white/40">
-          AÚN NO HAY PROYECTOS PUBLICADOS
-        </p>
-        <p className="mt-3 font-sans text-white/40">
-          Cada proyecto se desplegará en su propio subdominio y aparecerá
-          aquí.
-        </p>
-      </div>
+      {projects.length > 0 ? (
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {projects.map((project) => (
+            <ProjectCard key={project.title} {...project} />
+          ))}
+        </div>
+      ) : (
+        <div className="relative border-2 border-dashed border-white/15 px-8 py-20 text-center [clip-path:polygon(0_0,100%_0,100%_calc(100%-2rem),calc(100%-2rem)_100%,0_100%)]">
+          <p className="font-display text-2xl text-white/40">
+            AÚN NO HAY PROYECTOS PUBLICADOS
+          </p>
+          <p className="mt-3 font-sans text-white/40">
+            Cada proyecto se desplegará en su propio subdominio y aparecerá
+            aquí.
+          </p>
+        </div>
+      )}
     </div>
   );
 }

@@ -1,22 +1,36 @@
 import type { Metadata } from "next";
+import PageHeading from "@/components/PageHeading";
 
 export const metadata: Metadata = {
   title: "Contacto — Alejandro Vázquez Cobo",
 };
 
+const CHANNELS = [
+  { label: "EMAIL", value: "Pendiente de actualizar" },
+  { label: "GITHUB", value: "Pendiente de actualizar" },
+  { label: "LINKEDIN", value: "Pendiente de actualizar" },
+];
+
 export default function Contacto() {
   return (
     <div className="px-6 py-16 sm:px-12 lg:px-16">
-      <p className="font-display text-lg tracking-[0.3em] text-coral">
-        HABLEMOS
-      </p>
-      <h1 className="mt-4 font-display text-5xl -skew-x-3 sm:text-7xl">
-        CONTACTO
-      </h1>
+      <PageHeading eyebrow="HABLEMOS" title="CONTACTO" />
 
-      <p className="mt-8 max-w-xl font-sans text-white/70">
-        Pendiente de añadir email y redes.
-      </p>
+      <ul className="max-w-xl divide-y divide-white/10">
+        {CHANNELS.map((channel) => (
+          <li key={channel.label} className="flex items-center gap-6 py-5">
+            <span className="h-8 w-2 shrink-0 -skew-x-12 bg-coral/70" />
+            <div>
+              <p className="font-display text-sm tracking-widest text-white/40">
+                {channel.label}
+              </p>
+              <p className="mt-1 font-sans text-lg text-ink">
+                {channel.value}
+              </p>
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
