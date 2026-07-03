@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Anton, Space_Grotesk } from "next/font/google";
-import NavMenu from "@/components/NavMenu";
+import CenterMenu from "@/components/CenterMenu";
 import "./globals.css";
 
 const anton = Anton({
@@ -29,9 +29,9 @@ export default function RootLayout({
       lang="es"
       className={`${anton.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-bg text-ink lg:flex">
-        <NavMenu />
-        <main className="flex-1 lg:pl-72">{children}</main>
+      <body className="min-h-full bg-bg text-ink">
+        <CenterMenu />
+        <main>{children}</main>
       </body>
     </html>
   );
