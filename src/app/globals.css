@@ -24,6 +24,52 @@ body {
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
-.text-shard {
-  clip-path: polygon(4% 0, 100% 0, 96% 100%, 0 100%);
+@keyframes float-a {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(12deg);
+  }
+  50% {
+    transform: translate(24px, -18px) rotate(16deg);
+  }
+}
+
+@keyframes float-b {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(-6deg);
+  }
+  50% {
+    transform: translate(-20px, 22px) rotate(-10deg);
+  }
+}
+
+@keyframes float-c {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(45deg);
+  }
+  50% {
+    transform: translate(18px, 16px) rotate(41deg);
+  }
+}
+
+.shard-a {
+  animation: float-a 16s ease-in-out infinite;
+}
+
+.shard-b {
+  animation: float-b 20s ease-in-out infinite;
+}
+
+.shard-c {
+  animation: float-c 24s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shard-a,
+  .shard-b,
+  .shard-c {
+    animation: none;
+  }
 }

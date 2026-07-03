@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Anton, Space_Grotesk } from "next/font/google";
+import BackgroundFX from "@/components/BackgroundFX";
 import CenterMenu from "@/components/CenterMenu";
 import "./globals.css";
 
@@ -30,8 +31,11 @@ export default function RootLayout({
       className={`${anton.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-bg text-ink">
-        <CenterMenu />
-        <main>{children}</main>
+        <BackgroundFX />
+        <div className="relative z-10">
+          <CenterMenu />
+          <main>{children}</main>
+        </div>
       </body>
     </html>
   );
