@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { cn } from "@/lib/cn";
 
 export type Project = {
   title: string;
@@ -16,7 +17,11 @@ export default function ProjectCard({
   return (
     <Link
       href={href}
-      className="group relative block border border-white/10 bg-bg-2/40 p-6 transition-colors hover:border-lime [clip-path:polygon(0_0,100%_0,100%_calc(100%-1.5rem),calc(100%-1.5rem)_100%,0_100%)]"
+      className={cn(
+        "group relative block border border-white/10 bg-bg-2/40 p-6",
+        "transition-colors hover:border-lime",
+        "[clip-path:polygon(0_0,100%_0,100%_calc(100%-1.5rem),calc(100%-1.5rem)_100%,0_100%)]",
+      )}
     >
       <h3 className="font-display text-2xl -skew-x-3 transition-colors group-hover:text-lime">
         {title}

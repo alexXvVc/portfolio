@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import PageHeading from "@/components/PageHeading";
 import ProjectCard, { type Project } from "@/components/ProjectCard";
 import Reveal from "@/components/Reveal";
+import { cn } from "@/lib/cn";
 
 export const metadata: Metadata = {
   title: "Proyectos — Alejandro Vázquez Cobo",
@@ -24,7 +25,12 @@ export default function Proyectos() {
         </div>
       ) : (
         <Reveal>
-          <div className="relative border-2 border-dashed border-white/15 px-8 py-20 text-center [clip-path:polygon(0_0,100%_0,100%_calc(100%-2rem),calc(100%-2rem)_100%,0_100%)]">
+          <div
+            className={cn(
+              "relative border-2 border-dashed border-white/15 px-8 py-20 text-center",
+              "[clip-path:polygon(0_0,100%_0,100%_calc(100%-2rem),calc(100%-2rem)_100%,0_100%)]",
+            )}
+          >
             <p className="font-display text-2xl text-white/40">
               AÚN NO HAY PROYECTOS PUBLICADOS
             </p>

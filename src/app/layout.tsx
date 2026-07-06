@@ -3,6 +3,7 @@ import { ViewTransition } from "react";
 import { Anton, Space_Grotesk } from "next/font/google";
 import BackgroundFX from "@/components/BackgroundFX";
 import CenterMenu from "@/components/CenterMenu";
+import { cn } from "@/lib/cn";
 import "./globals.css";
 
 const anton = Anton({
@@ -29,7 +30,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${anton.variable} ${spaceGrotesk.variable} h-full antialiased`}
+      className={cn(anton.variable, spaceGrotesk.variable, "h-full antialiased")}
     >
       <body className="min-h-full bg-bg text-ink">
         <BackgroundFX />

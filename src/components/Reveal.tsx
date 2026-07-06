@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { cn } from "@/lib/cn";
 
 export default function Reveal({
   children,
@@ -36,9 +37,11 @@ export default function Reveal({
     <div
       ref={ref}
       style={{ transitionDelay: visible ? `${delayMs}ms` : "0ms" }}
-      className={`transition-all duration-700 ease-out ${
-        visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
-      } ${className}`}
+      className={cn(
+        "transition-all duration-700 ease-out",
+        visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
+        className,
+      )}
     >
       {children}
     </div>
