@@ -32,13 +32,33 @@ export default function BackgroundFX() {
     >
       <div className="absolute left-1/2 top-1/2 h-[70vmin] w-[70vmin] -translate-x-1/2 -translate-y-1/2 rounded-full bg-lime/10 blur-[140px]" />
 
-      <Shard anim="shard-a" className="-left-32 -top-24 h-96 w-96 bg-bg-2/70" />
-      <Shard anim="shard-b" className="-right-28 top-1/4 h-72 w-72 bg-coral/10" />
-      <Shard anim="shard-c" className="-left-20 bottom-0 h-80 w-80 bg-lime/5" />
+      <Shard anim="shard-a" className="-left-32 -top-24 h-96 w-96 bg-bg-2/80" />
+      <Shard anim="shard-b" className="-right-28 top-1/4 h-72 w-72 bg-coral/20" />
+      <Shard anim="shard-c" className="-left-20 bottom-0 h-80 w-80 bg-lime/12" />
       <Shard
         anim="shard-b"
-        className="-right-16 bottom-10 h-56 w-56 bg-bg-2/50"
+        className="-right-16 bottom-10 h-56 w-56 bg-bg-2/60"
         delay="-6s"
+      />
+      <Shard
+        anim="shard-c"
+        className="-right-12 -top-20 h-64 w-64 bg-coral/15"
+        delay="-2s"
+      />
+      <Shard
+        anim="shard-a"
+        className="right-10 top-1/2 h-52 w-52 bg-lime/12"
+        delay="-10s"
+      />
+      <Shard
+        anim="shard-b"
+        className="left-8 bottom-16 h-48 w-48 bg-bg-2/50"
+        delay="-14s"
+      />
+      <Shard
+        anim="shard-c"
+        className="left-1/3 top-10 h-40 w-40 bg-coral/10"
+        delay="-18s"
       />
 
       <div

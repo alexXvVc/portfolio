@@ -45,7 +45,7 @@ export default function CenterMenu() {
     <header className="flex min-h-dvh flex-col px-6 py-10">
       <Link
         href="/"
-        className="menu-item-in self-center font-display text-lg tracking-[0.4em] text-lime sm:text-xl"
+        className="menu-item-in self-center font-display text-2xl tracking-[0.35em] text-lime sm:text-3xl lg:text-4xl"
       >
         ALEJANDRO VÁZQUEZ COBO
       </Link>
