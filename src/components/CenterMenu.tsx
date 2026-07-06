@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { cn } from "@/lib/cn";
 
 const ITEMS = [
   { href: "/", label: "INICIO" },
@@ -10,6 +11,30 @@ const ITEMS = [
   { href: "/proyectos", label: "PROYECTOS" },
   { href: "/contacto", label: "CONTACTO" },
 ];
+
+/** Diagonal color block behind an active menu item; `offset` gives it a drop-shadow-like second layer. */
+function Shard({
+  tone,
+  active,
+  offset = false,
+}: {
+  tone: "coral" | "lime";
+  active: boolean;
+  offset?: boolean;
+}) {
+  return (
+    <span
+      aria-hidden
+      className={cn(
+        "absolute inset-y-2 -left-4 right-0 -skew-x-12",
+        "transition-all duration-300 ease-out",
+        tone === "coral" ? "bg-coral" : "bg-lime",
+        active ? "opacity-100" : "opacity-0",
+        active && offset && "translate-x-2 translate-y-1.5",
+      )}
+    />
+  );
+}
 
 export default function CenterMenu() {
   const pathname = usePathname();
@@ -33,6 +58,7 @@ export default function CenterMenu() {
           {items.map((item, index) => {
             const active = item.href === hovered;
             const dimmed = hovered !== null && !active;
+
             return (
               <li
                 key={item.href}
@@ -44,28 +70,26 @@ export default function CenterMenu() {
                   onMouseEnter={() => setHovered(item.href)}
                   onFocus={() => setHovered(item.href)}
                   onBlur={() => setHovered(null)}
-                  className={`relative flex h-16 items-center justify-center px-6 transition-transform duration-300 ease-out ${
-                    active ? "scale-110" : dimmed ? "scale-90" : "scale-100"
-                  }`}
+                  className={cn(
+                    "relative flex h-16 items-center justify-center px-6",
+                    "transition-transform duration-300 ease-out",
+                    active ? "scale-110" : dimmed ? "scale-90" : "scale-100",
+                  )}
                 >
+                  <Shard tone="coral" active={active} offset />
+                  <Shard tone="lime" active={active} />
+
                   <span
-                    aria-hidden
-                    className={`absolute inset-y-2 -left-4 right-0 -skew-x-12 bg-coral transition-all duration-300 ease-out ${
+                    className={cn(
+                      "font-display relative -skew-x-6 whitespace-nowrap",
+                      "text-5xl sm:text-6xl lg:text-7xl",
+                      "transition-colors duration-300 ease-out",
                       active
-                        ? "translate-x-2 translate-y-1.5 opacity-100"
-                        : "opacity-0"
-                    }`}
-                  />
-                  <span
-                    aria-hidden
-                    className={`absolute inset-y-2 -left-4 right-0 -skew-x-12 bg-lime transition-all duration-300 ease-out ${
-                      active ? "opacity-100" : "opacity-0"
-                    }`}
-                  />
-                  <span
-                    className={`font-display relative -skew-x-6 whitespace-nowrap text-5xl transition-colors duration-300 ease-out sm:text-6xl lg:text-7xl ${
-                      active ? "text-bg" : dimmed ? "text-ink/30" : "text-ink"
-                    }`}
+                        ? "text-bg"
+                        : dimmed
+                          ? "text-ink/30"
+                          : "text-ink",
+                    )}
                   >
                     {item.label}
                   </span>
